@@ -1,0 +1,17 @@
+public static void main(String[] args) throws IOException {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Dell\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("https://www.facebook.com/r.php");
+		driver.manage().window().maximize();
+		
+		driver.findElement(By.xpath("//input[@type=\"text\"]")).sendKeys("Tester");
+		
+		File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		Date d =new Date();
+		String date = d.toString();
+		String abc = date.replace(":","_");
+		
+		
+		File f = new File("E:\\Screenshot\\image1_"+abc+".jpg");
+		FileHandler.copy(src, f);
+	}
